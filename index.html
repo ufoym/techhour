@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/vis.css" />
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,6 +33,10 @@
         </ul>
       </header>
       <section>
+
+          <div id="timeline"></div>
+
+          <br/><hr>
 
           <h4>
           <a id="svm系列分享之对偶问题和SMO" class="anchor" href="#对偶问题和SMO" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SVM系列分享之对偶问题和SMO</h4>
@@ -82,6 +87,34 @@
       </section>
     </div>
     <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/vis.js"></script>
+    <script type="text/javascript">
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById('timeline');
 
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        {id: 1, content: 'Temporal Variance Analysis for Action Recognition', start: '2016-05-14'},
+        {id: 2, content: 'Expectation–Maximization Algorithm', start: '2016-05-21'},
+        {id: 3, content: '脑机接口简介', start: '2016-05-28'},
+        {id: 4, content: 'SVM系列分享之间隔和支持向量', start: '2016-05-28'},
+        {id: 5, content: 'SVM系列分享之对偶问题和SMO', start: '2016-06-04'},
+        {id: 6, content: 'SVM系列分享之核函数、软间隔与正则化', start: '2016-06-11'},
+        {id: 7, content: '林倞教授分享', start: '2016-06-18'},
+        {id: 8, content: 'FFT', start: '2016-06-25'},
+      ]);
+
+      function get_date(offset) {
+        var d = new Date();
+        d.setDate(d.getDate() + offset);
+        var dd = d.getDate();
+        if ( dd < 10 ) dd = '0' + dd;
+        var mm = d.getMonth()+1;
+        if ( mm < 10 ) mm = '0' + mm;
+        return d.getFullYear() + '-' + mm + '-' + dd;
+      }
+      var options = {start: get_date(-8), end: get_date(8)};
+      var timeline = new vis.Timeline(container, items, options);
+    </script>
   </body>
 </html>
